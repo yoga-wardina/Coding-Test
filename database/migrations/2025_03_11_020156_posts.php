@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->id('idpost');
+            $table->text('title');
+            $table->text('content');
+            $table->dateTime('date')->default(now());
+            $table->string('username', 45);
+            $table->foreign('username')->references('username')->on('accounts')->onUpdate('no action')->onDelete('no action');
+            $table->index('username', 'fk_post_account_idx');
             $table->timestamps();
         });
     }
