@@ -18,4 +18,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
     Route::post('/register',[AuthController::class, 'register'])->name('register');
     Route::get('/create-account', [DashboardController::class, 'newAcc'])->name('dashboard')->name('register.form');
+    Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 });

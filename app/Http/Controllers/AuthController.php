@@ -43,6 +43,15 @@ class AuthController extends Controller
             'role' => $request->role,
         ]);
 
-        return redirect()->route('register.form')->with('success', 'Account created successfully!');
+        return redirect()->view('protected.create');
     }
+    public function logout(Request $request)
+{
+    Auth::logout(); // Logs out the user
+
+    $request->session()->invalidate(); // Clears session data
+    $request->session()->regenerateToken(); // Prevents CSRF attacks
+
+    return redirect('/login'); // Redirect to login page
+}
 }

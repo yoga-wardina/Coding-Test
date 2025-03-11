@@ -17,7 +17,9 @@
         <div
             class="mt-5 flex flex-col gap-3 [&_a]:w-full  [&_a]:hover:bg-gray-100  [&_a]:p-2  [&_a]:hover:text-blue-500 ">
             @auth
-            <a href="create-account">Buat Akun</a>
+            @if(Auth::user()->role === 'admin')
+            <a href="/create-account">Buat Akun</a>
+            @endif
             @endauth
             <a href="/posts/create">Buat Post</a>
             <a href="/posts/list">List Post</a>
@@ -25,6 +27,10 @@
     </div>
     <div id="header"
         class="w-[calc(100vw-240px)] h-[64px] bg-white fixed top-0 z-10 right-0 flex justify-end items-center p-3">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="text-red-500">Logout</button>
+        </form>
         <div class="bg-gray-300 rounded-full w-12 h-12"></div>
     </div>
     <div class="ml-[240px] mt-[64px] p-3">@yield('content')</div>
