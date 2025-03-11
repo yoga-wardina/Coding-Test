@@ -11,7 +11,7 @@ class Post extends Model{
     public $incrementing = true;
     protected $fillable = ['title', 'content', 'username'];
 
-    public function account()
+    public function author()
     {
         return $this->belongsTo(Account::class, 'username', 'username');
     }
